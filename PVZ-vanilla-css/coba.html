@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Objek Berjalan dengan GIF</title>
+    <style>
+        body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+    overflow: hidden; /* Mencegah scroll bar muncul */
+}
+
+.container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.walking-object {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 100px; /* Atur lebar gambar */
+}
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="Zombie/1.gif" alt="Walking Object" class="walking-object" id="walkingObject">
+    </div>
+
+</body>
+<script>
+const walkingObject = document.getElementById('walkingObject');
+let position = window.innerWidth; // Mulai dari luar kanan layar
+const initialSpeed = 1; // Kecepatan awal pergerakan (pixel per frame)
+let speed = initialSpeed;
+const gifs = [
+'Zombie/1.gif',
+'Zombie/2.gif',
+'Zombie/3.gif',
+'Zombie/4.gif',
+'Zombie/5.gif',
+'Zombie/6.gif',
+'Zombie/7.gif',
+'Zombie/8.gif',
+'Zombie/9.gif',
+'Zombie/10.gif',
+'Zombie/11.gif',
+'Zombie/12.gif',
+'Zombie/13.gif',
+'Zombie/14.gif',
+'Zombie/15.gif',
+'Zombie/16.gif',
+'Zombie/17.gif',
+'Zombie/18.gif',
+'Zombie/19.gif',
+'Zombie/20.gif',
+'Zombie/21.gif',
+'Zombie/22.gif',
+'Zombie/23.gif',
+'Zombie/24.gif',
+'Zombie/25.gif',
+'Zombie/26.gif',
+'Zombie/27.gif',
+'Zombie/28.gif',
+'Zombie/29.gif',
+'Zombie/30.gif',
+'Zombie/31.gif',
+'Zombie/32.gif',
+'Zombie/33.gif',
+'Zombie/34.gif',
+];
+let currentGifIndex = 0;
+const changeInterval = 5; // Interval perubahan gambar (dalam frame)
+let frameCount = 0;
+const speedChangeInterval = 0.2; // Interval perubahan kecepatan (dalam frame)
+
+
+function moveObject() {
+    position -= speed; // Menggerakkan ke kiri
+    // if (position < -100) {
+    //     position = window.innerWidth; // Mulai lagi dari luar kanan layar
+    // }
+    // walkingObject.style.left = position + 'px';
+
+    frameCount++;
+    if (frameCount % changeInterval === 0) {
+        currentGifIndex = (currentGifIndex + 1) % gifs.length;
+        walkingObject.src = gifs[currentGifIndex];
+    }
+
+    requestAnimationFrame(moveObject);
+}
+
+moveObject();
+
+
+</script>
+</html>
+
+

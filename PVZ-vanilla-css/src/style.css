@@ -1,0 +1,112 @@
+h1{
+  position: absolute;
+}
+#container {
+  background-color: #662f10;
+  display: flex;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  font-family: Arial, Helvetica, sans-serif, roboto;
+}
+
+#begin-game {
+  display: flex;
+  flex-direction: column;
+}
+button {
+  padding: 10px 20px;
+  margin: 10px;
+  border: none;
+  border-radius: 5px;
+  background-color: #228B22;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+input[type="text"], select {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+  border: none;
+  border-radius: 5px;
+  background-color: #F08080;
+}
+
+#play-game {
+  background-image: url("/General/Background.jpg");
+  display: none;
+  height: 600px;
+  background-repeat: no-repeat;
+  flex-direction: column;
+  position: absolute;
+  width: -webkit-fill-available;
+  height: auto;
+}
+
+#instructionButton {
+            display: none;
+            position: absolute;
+            top: 50%;
+            right: -300px; /* Mulai di luar layar */
+            width: 200px;
+            padding: 10px;
+            background-color: #ddd;
+            border: 1px solid #ccc;
+            transition: right 0.5s ease;
+            transform: translateY(-50%);
+        }
+#instructionButton.show {
+            right: 20px; /* Geser ke dalam layar */
+        }
+
+#play-game button {
+  height: 70px;
+  padding-bottom: 15px;
+  margin-left: 5px;
+}
+
+.game-ui {
+  position: absolute;
+  top: 0;
+}
+.cards {
+  z-index: 999;
+  display: flex;
+  gap: 3px;
+  position: relative;
+  top: 10px;
+  left: 250px;
+}
+
+.card {
+  width: 100px;
+  height: 100px;
+}
+
+#boxesContainer {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 0px;
+  top: 50px;
+  left: 100px;
+  position: relative;
+}
+
+.box {
+  width: 102px;
+  height: 106px;
+  border: 1px solid #ccc;
+}
+
+.box img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.zombie{
+  position: absolute;
+}

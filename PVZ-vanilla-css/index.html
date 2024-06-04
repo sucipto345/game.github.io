@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="src/style.css">
+</head>
+<body>
+  <div id="container">
+    <img src="General/logo.png" alt="LKS-plantvszombie" />
+    <div id="begin-game">
+      <input type="text" placeholder="Input Username" id="username" required/>
+      <select name="choose-dificult" id="difficulty">
+        <option value="easy">easy</option>
+        <option value="normal">normal</option>
+        <option value="hard">hard</option>
+      </select>
+      <button id="play">Play game</button>
+      <button id="toggleButton">Instruction</button>
+      <div id="instructionButton" style="display: none">
+        <h2>How to play game</h2>
+        <p>1. Input Username</p>
+        <p>2. Take the sun to choose the plant card</p>
+        <p>3. Put plant cards into the field to fight zombies</p>
+        <p>4. Don't let zombies pass through the yard</p>
+        <p>5. Enjoy</p>
+      </div>
+    </div>
+  </div>
+  <div id="play-game" style="display: none">
+    <canvas id="gameCanvas"></canvas>     
+    <h1 id="sun">50</h1>
+    <div class="game-ui">
+ 
+      <div class="cards">
+        
+        <img
+          src="Seeds/SunFlowerSeed.png"
+          class="card"
+          draggable="true"
+        />
+        <img
+          src="Seeds/PeaShooterSeed.png"
+          class="card"
+          draggable="true"
+        />
+        <img
+          src="Seeds/IcePeaSeed.png"
+          class="card"
+          draggable="true"
+        />
+        <img
+          src="Seeds/WallNutSeed.png"
+          class="card"
+          draggable="true"
+        />
+        <img src="General/Shovel.png" width="10px"
+        class="card"
+        draggable="true"
+        />
+      </div>
+      <div id="boxesContainer"></div>
+      <div class="container">
+        <img src="Zombie/1.gif" alt="Walking Object" class="zombie" id="zombie">
+    </div>
+    </div>
+  </div>
+</body>
+ <script src="src/script.js"></script>
+</html>
