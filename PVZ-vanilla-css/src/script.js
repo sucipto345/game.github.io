@@ -4,9 +4,7 @@ var startGame = document.getElementById("play");
 var playGame = document.getElementById("play-game");
 var menuContainer = document.getElementById("container");
 var usernameInput = document.getElementById("username");
-var activeSuns = [];
 var isGamePaused = false;
-var zombie = document.getElementById("zombie");
 
 // Fungsi untuk menangani klik pada tombol toggleButton
 toggleButton.addEventListener("click", function () {
@@ -80,8 +78,6 @@ function handleDrop(event) {
     if (isImageDropped) {
         // Kirim element lain ke dalam box
         const newElement = document.createElement("image");
-        newElement.src = ;
-        box.appendChild(newElement);
     }
 }
 

@@ -7,9 +7,39 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
+  <div id="container">
+    <img src="General/logo.png" alt="LKS-plantvszombie" />
+    <div id="begin-game">
+      <input type="text" placeholder="Input Username" id="username" required/>
+      <select name="choose-dificult" id="difficulty">
+        <option value="easy">easy</option>
+        <option value="normal">normal</option>
+        <option value="hard">hard</option>
+      </select>
+      <button id="play">Play game</button>
+      <button id="toggleButton">Instruction</button>
+      <div id="instructionButton" style="display: none">
+        <h2>How to play game</h2>
+        <p>1. Input Username</p>
+        <p>2. Take the sun to choose the plant card</p>
+        <p>3. Put plant cards into the field to fight zombies</p>
+        <p>4. Don't let zombies pass through the yard</p>
+        <p>5. Enjoy</p>
+      </div>
+    </div>
+  </div>
+<div class="play-game" id="play-game" style="display: none">
   <canvas id="canvas1"></canvas>
-  
+</div>
+<div id="score-display">
+  <h3>Score Tertinggi:</h3>
+  <p id="high-score">0</p>
+</div>
+<div id="username-display">
+  <h3>Nama Pengguna:</h3>
+  <p id="username-display-value">-</p>
+  <div id="playerHistory"></div>
+</div>
   <script src="script.js"></script>
 </body>
 </html>
