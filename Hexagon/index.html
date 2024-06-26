@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="welcome-screen">
+    <h1>Welcome to Hexaria</h1>
+    <div id="game-instructions">
+        <!-- Instructions will be added dynamically -->
+    </div>
+    <form id="game-setup">
+        <div>
+            <label for="player1-name">Player 1 Name:</label>
+            <input type="text" id="player1-name" required>
+        </div>
+        <div>
+            <label for="opponent-type">Opponent:</label>
+            <select id="opponent-type">
+                <option value="player">Player 2</option>
+                <option value="bot">Bot</option>
+            </select>
+        </div>
+        <div id="player2-input">
+            <label for="player2-name">Player 2 Name:</label>
+            <input type="text" id="player2-name">
+        </div>
+        <div>
+            <label for="difficulty">Difficulty:</label>
+            <select id="difficulty" required>
+                <option value="">Select difficulty</option>
+                <option value="easy">Easy</option>
+                <option value="medium">Medium</option>
+                <option value="hard">Hard</option>
+            </select>
+        </div>
+        <button type="submit" id="start-game" disabled>Play Game</button>
+    </form>
+</div>
+
+<div id="game-screen" style="display: none;">
+  <h1>Hexaria</h1>
+  <div id="game-board"></div>
+  <div id="player-info">
+    <div id="player1">
+        <h2>Player 1</h2>
+        <p>Score: <span id="score1">0</span></p>
+        <p id="player1-details"></p>
+    </div>
+    <div id="player2">
+        <h2>Player 2</h2>
+        <p>Score: <span id="score2">0</span></p>
+        <p id="player2-details"></p>
+    </div>
+</div>
+  <div id="current-hexagon"></div>
+  <button id="new-game">New Game</button>
+</div>
+<div id="leaderboard" style="display: none;">
+  <h2>Leaderboard</h2>
+  <button id="toggle-leaderboard" onclick="toggleLeaderboard()">Show Leaderboard</button>
+  <div>
+      <button id="sort-score">Sort by Score</button>
+      <button id="sort-date">Sort by Date</button>
+  </div>
+  <table id="leaderboard-table">
+      <thead>
+          <tr>
+              <th>Rank</th>
+              <th>Name</th>
+              <th>Score</th>
+              <th>Date</th>
+              <th>Details</th>
+          </tr>
+      </thead>
+      <tbody></tbody>
+  </table>
+</div>
+
+</body>
+<script src="script.js"></script>
+</html>
