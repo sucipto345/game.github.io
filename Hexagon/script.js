@@ -44,21 +44,24 @@ function initGame() {
   }
 
   function startGame(e) {
-      e.preventDefault();
-      gameState.players = [
-          { name: player1NameInput.value.trim(), score: 0 },
-          { name: opponentTypeSelect.value === 'bot' ? 'Bot' : player2NameInput.value.trim(), score: 0 }
-      ];
-      gameState.difficulty = difficultySelect.value;
-      
-      // Hide welcome screen and show game screen
-      document.getElementById('welcome-screen').style.display = 'none';
-      document.getElementById('game-screen').style.display = 'block';
-      
-      // Initialize game board
-      createBoard();
-      initLeaderboard();
-  }
+    e.preventDefault();
+    gameState.players = [
+        { name: player1NameInput.value.trim(), score: 0 },
+        { name: opponentTypeSelect.value === 'bot' ? 'Bot' : player2NameInput.value.trim(), score: 0 }
+    ];
+    gameState.difficulty = difficultySelect.value;
+    gameState.currentPlayer = 0;
+    gameState.currentHexagon = generateRandomHexagon();
+    
+    // Hide welcome screen and show game screen
+    document.getElementById('welcome-screen').style.display = 'none';
+    document.getElementById('game-screen').style.display = 'block';
+    
+    // Initialize game board
+    createBoard();
+    updateCurrentHexagonDisplay();
+    initLeaderboard();
+}
 }
 
 function addGameInstructions(container) {
@@ -125,9 +128,6 @@ function createBoard() {
 
       board.appendChild(row);
   }
-
-  // Add disabled hexagons based on difficulty
-  addDisabledHexagons();
 }
 
 function addDisabledHexagons() {
@@ -176,7 +176,7 @@ function handleHexagonClick(event) {
 }
 
 function handleHexagonHover(event) {
-  if (gameState.gameOver || gameState.players[gameState.currentPlayer].name === 'Bot') return;
+  if (gameState.gameOver || gameState.players[gameState.currentPlayer].name === 'Bot' || !gameState.currentHexagon) return;
   
   const hexagon = event.target;
   const row = parseInt(hexagon.dataset.row);
@@ -192,7 +192,6 @@ function handleHexagonHover(event) {
   // Show preview of potential takeovers
   showTakeoverPreview(row, col);
 }
-
 
 
   function handleHexagonHoverOut(event) {
@@ -402,6 +401,20 @@ function findBestMove() {
   return bestMove;
 }
 
+function checkGameOver() {
+  // Check if all hexagons are filled
+  for (let i = 0; i < gameState.board.length; i++) {
+      for (let j = 0; j < gameState.board[i].length; j++) {
+          if (gameState.board[i][j].value === null && !gameState.board[i][j].element.classList.contains('disabled')) {
+              // If there's an empty, non-disabled hexagon, the game is not over
+              return false;
+          }
+      }
+  }
+  // If we've checked all hexagons and haven't returned false, the game is over
+  return true;
+}
+
 function evaluateMove(row, col) {
   let score = 0;
   const currentValue = gameState.currentHexagon.value;
@@ -471,9 +484,14 @@ function botTurn() {
 }
 
 function updateTurnDisplay() {
-  const turnDisplay = document.getElementById('turn-display');
-  turnDisplay.textContent = `${gameState.players[gameState.currentPlayer].name}'s Turn`;
-  turnDisplay.style.color = gameState.currentPlayer === 0 ? 'red' : 'blue';
+  const currentPlayer = document.getElementById('current-player');
+  if (currentPlayer) {
+    const h3 = currentPlayer.querySelector('h3');
+    if (h3) {
+      h3.textContent = `Current: ${gameState.players[gameState.currentPlayer].name}`;
+      h3.style.color = gameState.currentPlayer === 0 ? 'red' : 'blue';
+    }
+  }
 }
 
 function nextTurn() {
@@ -561,16 +579,20 @@ function animateIncrement(element) {
 }
 
 function updateScoreDisplay() {
-  gameState.players.forEach((player, index) => {
-      const scoreElement = document.getElementById(`score${index + 1}`);
-      const detailsElement = document.getElementById(`player${index + 1}-details`);
-      
-      scoreElement.textContent = player.score;
-      detailsElement.innerHTML = `
-          Hexagons: ${player.hexCount}<br>
-          Total Value: ${player.totalValue}
-      `;
-  });
+  const score1Element = document.getElementById('score1');
+  const score2Element = document.getElementById('score2');
+  
+  if (score1Element && score2Element) {
+      score1Element.textContent = gameState.players[0].score;
+      score2Element.textContent = gameState.players[1].score;
+  }
+
+  // Remove the following lines as these elements don't exist in your HTML
+  // const detailsElement = document.getElementById(`player${index + 1}-details`);
+  // detailsElement.innerHTML = `
+  //     Hexagons: ${player.hexCount}<br>
+  //     Total Value: ${player.totalValue}
+  // `;
 }
 
 function calculateScores() {

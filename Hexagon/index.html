@@ -46,22 +46,25 @@
   <div id="game-board"></div>
   <div id="player-info">
     <div id="player1">
-        <h2>Player 1</h2>
-        <p>Score: <span id="score1">0</span></p>
-        <p id="player1-details"></p>
+        <h2>Red</h2>
+        <p id="score1">0</p>
     </div>
+    <div id="turn-display"></div>
     <div id="player2">
-        <h2>Player 2</h2>
-        <p>Score: <span id="score2">0</span></p>
-        <p id="player2-details"></p>
+        <h2>Blue</h2>
+        <p id="score2">0</p>
     </div>
-</div>
-  <div id="current-hexagon"></div>
+  </div>
+  <div id="current-player">
+    <h3>Current</h3>
+    <div id="current-hexagon"></div>
+  </div>
   <button id="new-game">New Game</button>
+  <button id="toggle-leaderboard" onclick="toggleLeaderboard()">Show Leaderboard</button>
 </div>
+
 <div id="leaderboard" style="display: none;">
   <h2>Leaderboard</h2>
-  <button id="toggle-leaderboard" onclick="toggleLeaderboard()">Show Leaderboard</button>
   <div>
       <button id="sort-score">Sort by Score</button>
       <button id="sort-date">Sort by Date</button>
